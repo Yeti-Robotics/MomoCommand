@@ -9,9 +9,6 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.templates.RobotTemplate;
-import edu.wpi.first.wpilibj.templates.commands.CheckCompressorCommand;
 
 /**
  *
@@ -39,19 +36,6 @@ public class PneumaticsSubsystem extends Subsystem {
     }
 
     public void initDefaultCommand() {
-        setDefaultCommand(new CheckCompressorCommand());
-    }
-    
-    public boolean shouldCompressorBeOn() {
-        return compressor.get();
-    }
-    
-    public void compressorOn() {
-        compressorRelay.set(Relay.Value.kForward);
-    }
-    
-    public void compressorOff() {
-        compressorRelay.set(Relay.Value.kOff);
     }
     
     public void climberForward() {
@@ -68,9 +52,5 @@ public class PneumaticsSubsystem extends Subsystem {
     
     public void magazineReverse() {
         magazine.set(DoubleSolenoid.Value.kReverse);
-    }
-    
-    public void log() {
-        SmartDashboard.putBoolean("Pressure Switch", compressor.get());
     }
 }

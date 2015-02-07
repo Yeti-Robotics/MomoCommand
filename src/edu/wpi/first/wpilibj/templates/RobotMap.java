@@ -10,6 +10,6 @@ public class RobotMap {
     public static final int JOYSTICK_LEFT = 1;
     public static final int JOYSTICK_RIGHT = 2;
     
-    public static final int INITIALSPEED_PORT = 6;
-    public static final int FINALSPEED_PORT = 7;
+    public static final int BACKJAGUAR_PORT = 6;
+    public static final int FRONTJAGUAR_PORT = 5;
 }

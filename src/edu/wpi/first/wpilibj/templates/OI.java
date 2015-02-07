@@ -5,10 +5,14 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.DigitalIOButton;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.templates.commands.AbortCommand;
 import edu.wpi.first.wpilibj.templates.commands.ClimberForwardCommand;
 import edu.wpi.first.wpilibj.templates.commands.ClimberReverseCommand;
 import edu.wpi.first.wpilibj.templates.commands.MagazineForwardCommand;
 import edu.wpi.first.wpilibj.templates.commands.MagazineReverseCommand;
+import edu.wpi.first.wpilibj.templates.commands.ToggleTransmitionCommand;
+import edu.wpi.first.wpilibj.templates.commands.TestCommandGroup;
+import edu.wpi.first.wpilibj.templates.commands.UniversalDriveCommand;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -44,27 +48,34 @@ public class OI
     // button.whenReleased(new ExampleCommand());
     Joystick leftJoy;
     Joystick rightJoy;
-
+    
     public OI()
       {
         leftJoy = new Joystick(RobotMap.JOYSTICK_LEFT);
         rightJoy = new Joystick(RobotMap.JOYSTICK_RIGHT);
-
+        
         setJoystickButtonCommand(leftJoy, 3, new ClimberForwardCommand());
         setJoystickButtonCommand(leftJoy, 2, new ClimberReverseCommand());
-
+        
         setJoystickButtonCommand(rightJoy, 3, new MagazineForwardCommand());
         setJoystickButtonCommand(rightJoy, 2, new MagazineReverseCommand());
+        
+        setJoystickButtonCommand(leftJoy, 8, new TestCommandGroup());
+        setJoystickButtonCommand(rightJoy, 8, new AbortCommand());
+        
+        setJoystickButtonCommand(rightJoy, 1, new ToggleTransmitionCommand());
+        
+        setJoystickButtonCommand(leftJoy, 1, new UniversalDriveCommand(0.5, 0.5, 2));
       }
-
+    
     private void setJoystickButtonCommand(Joystick joystick, int buttonNumber, Command command)
       {
         new JoystickButton(joystick, buttonNumber).whenPressed(command);
       }
-
+    
     public double joystickMod(double axisvalue)
       {
-        if (Math.abs(axisvalue) > 0.1)
+        if (Math.abs(axisvalue) > 0.05)
           {
             return axisvalue;
           } else
@@ -72,32 +83,32 @@ public class OI
             return 0.0;
           }
       }
-
+    
     public double getLeftY()
       {
         return joystickMod(leftJoy.getY());
       }
-
+    
     public double getRightY()
       {
         return joystickMod(rightJoy.getY());
       }
-
+    
     public double throttleMod(Joystick joystick)
       {
-        return (joystickMod((-joystick.getThrottle() + 1) / 2));
+        return (joystickMod((-joystick.getZ() + 1) / 2));
       }
-
+    
     public double getLeftThrottle()
       {
         return throttleMod(leftJoy);
       }
-
+    
     public Joystick getLeftJoy()
       {
         return leftJoy;
       }
-
+    
     public Joystick getRightJoy()
       {
         return rightJoy;

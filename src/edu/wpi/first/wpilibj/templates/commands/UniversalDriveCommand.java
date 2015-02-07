@@ -12,26 +12,32 @@ import edu.wpi.first.wpilibj.templates.RobotTemplate;
  *
  * @author acampbell
  */
-public class MagazineReverseCommand extends Command {
+public class UniversalDriveCommand extends Command {
     
-    public MagazineReverseCommand() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-        requires(RobotTemplate.pneumatics);
+    double leftValue;
+    double rightValue;
+    double time;
+    
+    public UniversalDriveCommand(double leftValue, double rightValue, double time) {
+        this.leftValue = leftValue;
+        this.rightValue = rightValue;
+        this.time = time;
+        requires(RobotTemplate.drive);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+        setTimeout(time);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        RobotTemplate.pneumatics.magazineReverse();
+        RobotTemplate.drive.drive(-leftValue, -rightValue);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return isTimedOut();
     }
 
     // Called once after isFinished returns true

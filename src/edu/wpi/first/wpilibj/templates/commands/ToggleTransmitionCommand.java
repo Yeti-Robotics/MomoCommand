@@ -5,6 +5,7 @@
  */
 package edu.wpi.first.wpilibj.templates.commands;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.templates.RobotTemplate;
 
@@ -12,11 +13,12 @@ import edu.wpi.first.wpilibj.templates.RobotTemplate;
  *
  * @author Matthew
  */
-public class CheckCompressorCommand extends Command
+public class ToggleTransmitionCommand extends Command
   {
-
-    public CheckCompressorCommand()
+    
+    public ToggleTransmitionCommand()
       {
+          requires(RobotTemplate.drive);
       }
 
     // Called just before this Command runs the first time
@@ -27,19 +29,20 @@ public class CheckCompressorCommand extends Command
     // Called repeatedly when this Command is scheduled to run
     protected void execute()
       {
-        if (RobotTemplate.pneumatics.shouldCompressorBeOn())
-          {
-            RobotTemplate.pneumatics.compressorOn();
-          } else
-          {
-            RobotTemplate.pneumatics.compressorOff();
-          }
+        if (RobotTemplate.drive.getShift() == DoubleSolenoid.Value.kForward) {
+            RobotTemplate.drive.shiftDown();
+        } else if (RobotTemplate.drive.getShift() == DoubleSolenoid.Value.kReverse){
+            RobotTemplate.drive.shiftUp();
+        } else {
+            RobotTemplate.drive.shiftUp();
+        }
+          System.out.println(RobotTemplate.drive.getShift());
       }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished()
       {
-        return false;
+        return true;
       }
 
     // Called once after isFinished returns true

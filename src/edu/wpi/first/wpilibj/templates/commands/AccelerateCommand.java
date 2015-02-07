@@ -27,7 +27,7 @@ public class AccelerateCommand extends Command{
     // Called repeatedly when this Command is scheduled to run
     protected void execute()
       {
-          RobotTemplate.accelerator.spin(RobotTemplate.oi.getLeftThrottle());
+          RobotTemplate.accelerator.spinBoth(RobotTemplate.oi.getLeftThrottle());
       }
 
     // Make this return true when this Command no longer needs to run execute()

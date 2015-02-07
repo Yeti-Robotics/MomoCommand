@@ -9,6 +9,7 @@ package edu.wpi.first.wpilibj.templates.subsystems;
 import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.templates.RobotMap;
+import edu.wpi.first.wpilibj.templates.RobotTemplate;
 import edu.wpi.first.wpilibj.templates.commands.AccelerateCommand;
 
 /**
@@ -18,19 +19,29 @@ import edu.wpi.first.wpilibj.templates.commands.AccelerateCommand;
 public class AcceleratorSubsystem extends Subsystem
   {
 
-    Jaguar initialSpeed;
-    Jaguar finalSpeed;
+    Jaguar jaguar1;
+    Jaguar jaguar2;
 
     public void initDefaultCommand()
       {
         setDefaultCommand(new AccelerateCommand());
-        initialSpeed = new Jaguar(RobotMap.INITIALSPEED_PORT);
-        finalSpeed = new Jaguar(RobotMap.FINALSPEED_PORT);
+        jaguar1 = new Jaguar(RobotMap.BACKJAGUAR_PORT);
+        jaguar2 = new Jaguar(RobotMap.FRONTJAGUAR_PORT);
       }
 
-    public void spin(double speed)
+    public void spinBoth(double speed)
       {
-        initialSpeed.set(speed * (3/4));
-        finalSpeed.set(speed);
+        jaguar1.set(speed * 0.75d);
+        jaguar2.set(speed);
+      }
+    
+    public void spinBack(double speed)
+      {
+        jaguar1.set(speed);
+      }
+    
+    public void spinFront(double speed)
+      {
+        jaguar2.set(speed);
       }
   }
