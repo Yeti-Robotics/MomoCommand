@@ -11,6 +11,7 @@ package edu.wpi.first.wpilibj.templates;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.templates.subsystems.AcceleratorSubsystem;
 import edu.wpi.first.wpilibj.templates.subsystems.DriveSubsystem;
 import edu.wpi.first.wpilibj.templates.subsystems.PneumaticsSubsystem;
 
@@ -25,6 +26,7 @@ public class RobotTemplate extends IterativeRobot {
     
     public static DriveSubsystem drive;
     public static PneumaticsSubsystem pneumatics;
+    public static AcceleratorSubsystem accelerator;
     public static OI oi;
 
     /**
@@ -34,6 +36,7 @@ public class RobotTemplate extends IterativeRobot {
     public void robotInit() {
         drive = new DriveSubsystem();
         pneumatics = new PneumaticsSubsystem();
+        accelerator = new AcceleratorSubsystem();
         oi = new OI();
     }
 

@@ -19,7 +19,7 @@ public class DriveSubsystem extends Subsystem {
     RobotDrive drive;
 
     public DriveSubsystem() {
-        drive = new RobotDrive(4, 3, 2, 1);
+        drive = new RobotDrive(1, 2, 3, 4);
     }
 
     public void initDefaultCommand() {

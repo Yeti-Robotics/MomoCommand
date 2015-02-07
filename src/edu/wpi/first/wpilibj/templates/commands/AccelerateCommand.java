@@ -10,39 +10,40 @@ import edu.wpi.first.wpilibj.templates.RobotTemplate;
 
 /**
  *
- * @author acampbell
+ * @author Matthew
  */
-public class UserDriveCommand extends Command {
+public class AccelerateCommand extends Command{
     
-    public UserDriveCommand() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-        requires(RobotTemplate.drive);
-
-    }
+    public AccelerateCommand()
+      {
+        requires(RobotTemplate.accelerator);
+      }
 
     // Called just before this Command runs the first time
-    protected void initialize() {
-    }
+    protected void initialize()
+      {
+      }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
-        RobotTemplate.drive.drive(RobotTemplate.oi.getLeftY(),
-                RobotTemplate.oi.getRightY());
-    }
+    protected void execute()
+      {
+          RobotTemplate.accelerator.spin(RobotTemplate.oi.getLeftThrottle());
+      }
 
     // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
+    protected boolean isFinished()
+      {
         return false;
-    }
+      }
 
     // Called once after isFinished returns true
-    protected void end() {
-    }
+    protected void end()
+      {
+      }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
-    protected void interrupted() {
-        end();
-    }
-}
+    protected void interrupted()
+      {
+      }
+  }
