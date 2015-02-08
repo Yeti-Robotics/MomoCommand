@@ -34,41 +34,41 @@ public class TestCommandGroup extends CommandGroup
         //Pick Up Can
         addSequential(new MagazineReverseCommand());
         //drive under tote
-        addSequential(new UniversalDriveCommand(0.5, 0.5, 1));
+        addSequential(new UniversalDriveCommand(1, 1, 0.25));
         //pick up tote
-        addSequential(new FrontAccceleratorTimeCommand(0.3, 1));
+        addSequential(new FrontAccceleratorTimeCommand(0.3, 0.25));
         //drive to next set
         addParallel(new MagazineForwardCommand());
-        addSequential(new UniversalDriveCommand(1, 1, 2));
+        addSequential(new UniversalDriveCommand(1, 1, 0.5));
 
         //pick up can
         addSequential(new MagazineReverseCommand());
         //drive to tote
-        addSequential(new UniversalDriveCommand(0.5, 0.5, 1));
+        addSequential(new UniversalDriveCommand(1, 1, 0.5));
         //put tote on tote
-        addSequential(new FrontAccceleratorTimeCommand(-0.3, 1));
+        addSequential(new FrontAccceleratorTimeCommand(-0.3, 0.5));
         //pick up
-        addSequential(new FrontAccceleratorTimeCommand(0.3, 1));
+        addSequential(new FrontAccceleratorTimeCommand(0.3, 0.5));
         //drive to next set
         addParallel(new MagazineForwardCommand());
-        addSequential(new UniversalDriveCommand(1, 1, 2));
+        addSequential(new UniversalDriveCommand(1, 1, 1));
 
         //pick up can
         addSequential(new MagazineReverseCommand());
         //drive to tote
-        addSequential(new UniversalDriveCommand(0.5, 0.5, 1));
+        addSequential(new UniversalDriveCommand(1, 1, 0.5));
         //put tote on tote
-        addSequential(new FrontAccceleratorTimeCommand(-0.3, 1));
+        addSequential(new FrontAccceleratorTimeCommand(-0.3, 0.5));
         //pick up
-        addSequential(new FrontAccceleratorTimeCommand(0.3, 1));
+        addSequential(new FrontAccceleratorTimeCommand(0.3, 0.5));
 
         //turn right
         addSequential(new UniversalDriveCommand(1, -1, 0.5));
         //drive straight
-        addSequential(new UniversalDriveCommand(1, 1, 2));
+        addSequential(new UniversalDriveCommand(1, 1, 1));
         //put down totes
-        addSequential(new FrontAccceleratorTimeCommand(-0.3, 1));
+        addSequential(new FrontAccceleratorTimeCommand(-0.3, 0.5));
         //drive back
-        addSequential(new UniversalDriveCommand(0.5, 0.5, 0.5));
+        addSequential(new UniversalDriveCommand(-0.5, -0.5, 0.5));
       }
   }
